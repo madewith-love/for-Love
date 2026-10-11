@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Love 🌙</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root {
+  --night: #071321;
+  --green: #b6d9b3;
+  --muted: #b1c4c8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% 35%,
+      #193650 0%, #0b1d30 42%, #050d19 100%);
+  color: #f2f4e9;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  background: #fff9db;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.3); }
+}
+
+.moon {
+  position: absolute;
+  top: 9%;
+  right: 12%;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: #fff3c9;
+  box-shadow: 0 0 30px #fff1c455, 0 0 90px #dce8c522;
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 19px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #10263a;
+}
+
+.mountain {
+  position: fixed;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 55vw solid transparent;
+  border-right: 55vw solid transparent;
+  border-bottom: 37vh solid #102b31;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mountain.back {
+  left: -35vw;
+  border-bottom-color: #17313b;
+  border-bottom-width: 28vh;
+}
+
+.mountain.front {
+  right: -35vw;
+  border-bottom-color: #081e24;
+  border-bottom-width: 36vh;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 32px, 680px);
+  min-height: 100vh;
+  margin: auto;
+  padding: 58px 0 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin-top: 24px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(45px, 10vw, 76px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -2px;
+}
+
+h1 span {
+  display: block;
+  color: #c7dfba;
+  font-style: italic;
+}
+
+.subtitle {
+  margin-top: 18px;
+  max-width: 340px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.illustration {
+  position: relative;
+  width: 170px;
+  height: 150px;
+  margin: 24px auto 20px;
+  display: grid;
+  place-items: center;
+}
+
+.tree {
+  font-size: 76px;
+  filter: drop-shadow(0 0 20px #a4d8a522);
+  animation: sway 4s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.orbit {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #b8d7b322;
+  border-radius: 50%;
+}
+
+.orbit::before {
+  content: "✦";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #dcebc7;
+  font-size: 15px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.primary {
+  margin-top: 10px;
+  padding: 15px 25px;
+  border: 1px solid #d3e4bd88;
+  border-radius: 40px;
+  background: #bcd5ad;
+  color: #10271e;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  box-shadow: 0 0 35px #bcd5ad18;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 38px #bcd5ad38;
+}
+
+.music {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  padding: 10px 13px;
+  border: 1px solid #ffffff20;
+  border-radius: 25px;
+  background: #102236bb;
+  color: #e6f0df;
+  font-size: 11px;
+  backdrop-filter: blur(10px);
+}
+
+#letter {
+  display: none;
+  width: 100%;
+  margin-top: 34px;
+  padding: clamp(22px, 6vw, 38px);
+  border: 1px solid #c3d9b52c;
+  border-radius: 22px;
+  background: linear-gradient(145deg,
+    #152b35eF, #101d2beF);
+  box-shadow: 0 15px 70px #00000020;
+  text-align: left;
+  animation: reveal .8s ease both;
+}
+
+#letter.show {
+  display: block;
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.letter-label {
+  color: #bad9ae;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#letter h2 {
+  margin: 18px 0 22px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(27px, 6vw, 38px);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+#letter p {
+  margin: 0 0 18px;
+  color: #d0dce0;
+  font-size: 14px;
+  line-height: 1.95;
+}
+
+#letter .signoff {
+  margin-top: 28px;
+  color: #c6e1b9;
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-style: italic;
+}
+
+#letter .close {
+  display: block;
+  margin: 24px auto 0;
+  padding: 10px 17px;
+  border: 1px solid #ffffff25;
+  border-radius: 25px;
+  background: transparent;
+  color: #d5e3d2;
+  font-size: 12px;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 42px;
+  color: #91a8ae;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.leaf {
+  position: fixed;
+  top: -30px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .6;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translate3d(var(--drift), 110vh, 0) rotate(680deg);
+    opacity: .05;
+  }
+}
+
+.firefly {
+  position: fixed;
+  z-index: 1;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e7f6a8;
+  box-shadow: 0 0 12px 4px #d5ed8b55;
+  pointer-events: none;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { opacity: .15; }
+  to { opacity: 1; }
+}
+
+.bottom-note {
+  margin-top: 18px;
+  color: #8ea9a6;
+  font-size: 11px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sky" id="sky"></div>
+<div class="moon"></div>
+<div class="mountain back"></div>
+<div class="mountain front"></div>
+
+<button class="music" id="musicButton" type="button">
+  ♫ Music: Off
+</button>
+
+<audio id="music" loop preload="none">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<main>
+  <div class="eyebrow">12 October · A little celebration</div>
+
+  <h1>
+    Happy Birthday,
+    <span>Love 🌿</span>
+  </h1>
+
+  <p class="subtitle">
+    Under a sky full of stars, here's a little
+    corner of the universe made to celebrate you.
+  </p>
+
+  <div class="illustration" aria-hidden="true">
+    <div class="orbit"></div>
+    <div class="tree">🌲</div>
+  </div>
+
+  <button class="primary" id="openButton" type="button">
+    Open your birthday letter ✉
+  </button>
+
+  <section id="letter" aria-hidden="true">
+    <div class="letter-label">A little note for you · 🌱</div>
+
+    <h2>Hieee Love! 🌿</h2>
+
+    <p>
+      Happy Birthday to one of the most special people
+      in my life! 💚
+    </p>
+
+    <p>
+      I hope this new year of your life brings you as
+      much peace as a quiet night under the stars,
+      as much happiness as a forest full of sunshine,
+      and as many beautiful moments as there are
+      stars in the sky.
+    </p>
+
+    <p>
+      Never stop exploring, dreaming, and being the
+      amazing person you are. I'm really glad to have
+      a best friend like you.
+    </p>
+
+    <p>
+      Keep growing, keep smiling, and keep being you. 🌙
+    </p>
+
+    <p>
+      Happy Birthday, bhondu Here's to another year
+      of adventures!
+    </p>
+
+    <div class="signoff">
+      Stay awesome, bestie! 🌲✨
+    </div>
+
+    <button class="close" id="closeButton" type="button">
+      Close letter ↑
+    </button>
+  </section>
+
+  <p class="bottom-note">
+    Made with friendship, stardust & a little bit of chaos.
+  </p>
+
+  <footer class="footer">
+    Keep exploring, bhondu · 🌌
+  </footer>
+</main>
+
+<script>
+const sky = document.getElementById('sky');
+const letter = document.getElementById('letter');
+const openButton = document.getElementById('openButton');
+const closeButton = document.getElementById('closeButton');
+const music = document.getElementById('music');
+const musicButton = document.getElementById('musicButton');
+
+// Create a sky full of stars
+for (let i = 0; i < 115; i++) {
+  const star = document.createElement('span');
+  star.className = 'star';
+  const size = Math.random() * 2.4 + 0.6;
+
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 75 + '%';
+  star.style.width = size + 'px';
+  star.style.height = size + 'px';
+  star.style.animationDelay = Math.random() * 4 + 's';
+  star.style.animationDuration = (2 + Math.random() * 4) + 's';
+
+  sky.appendChild(star);
+}
+
+// Add glowing fireflies
+for (let i = 0; i < 22; i++) {
+  const fly = document.createElement('span');
+  fly.className = 'firefly';
+  fly.style.left = Math.random() * 100 + '%';
+  fly.style.top = (25 + Math.random() * 65) + '%';
+  fly.style.animationDelay = Math.random() * 4 + 's';
+  fly.style.animationDuration = (1.5 + Math.random() * 3) + 's';
+
+  document.body.appendChild(fly);
+}
+
+// Floating leaves
+const leafSymbols = ['🍃', '🌿', '🍂'];
+
+function createLeaf() {
+  const leaf = document.createElement('span');
+  leaf.className = 'leaf';
+  leaf.textContent =
+    leafSymbols[Math.floor(Math.random() * leafSymbols.length)];
+
+  leaf.style.left = Math.random() * 100 + 'vw';
+  leaf.style.fontSize = (12 + Math.random() * 12) + 'px';
+  leaf.style.setProperty('--drift', (Math.random() * 180 - 90) + 'px');
+  leaf.style.animationDuration = (9 + Math.random() * 9) + 's';
+
+  document.body.appendChild(leaf);
+  leaf.addEventListener('animationend', () => leaf.remove());
+}
+
+setInterval(createLeaf, 1100);
+
+// Reveal the birthday letter
+openButton.addEventListener('click', () => {
+  letter.classList.add('show');
+  letter.setAttribute('aria-hidden', 'false');
+  openButton.textContent = 'Your birthday letter is open ✨';
+
+  setTimeout(() => {
+    letter.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }, 100);
+});
+
+closeButton.addEventListener('click', () => {
+  letter.classList.remove('show');
+  letter.setAttribute('aria-hidden', 'true');
+  openButton.textContent = 'Open your birthday letter ✉';
+  openButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+// Music starts only after the visitor clicks
+musicButton.addEventListener('click', async () => {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicButton.textContent = '♫ Music: On';
+    } catch (error) {
+      musicButton.textContent = '♫ Add music.mp3 first';
+    }
+  } else {
+    music.pause();
+    musicButton.textContent = '♫ Music: Off';
+  }
+});
+</script>
+
+</body>
+</html>
+
